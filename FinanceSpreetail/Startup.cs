@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using FinanceSpreetail.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using FinanceSpreetail.Models;
 
 namespace FinanceSpreetail
 {
@@ -42,6 +43,9 @@ namespace FinanceSpreetail
 
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+		    services.AddDbContext<FinanceSpreetailContext>(options =>
+		            options.UseSqlServer(Configuration.GetConnectionString("FinanceSpreetailContext")));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

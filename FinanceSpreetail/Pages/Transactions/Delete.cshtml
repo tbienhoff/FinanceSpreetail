@@ -1,0 +1,40 @@
+﻿@page
+@model FinanceSpreetail.Pages.Transaction.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.amount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.date)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Transaction.ID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

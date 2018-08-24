@@ -1,0 +1,37 @@
+﻿@page
+@model FinanceSpreetail.Pages.Transaction.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.amount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Transaction.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
