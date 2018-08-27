@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using FinanceSpreetail.Models;
 
 namespace FinanceSpreetail.Models
 {
@@ -14,5 +15,7 @@ namespace FinanceSpreetail.Models
         }
 
         public DbSet<FinanceSpreetail.Models.Transaction> Transaction { get; set; }
+
+        public DbSet<FinanceSpreetail.Models.Category> Category { get; set; }
     }
 }

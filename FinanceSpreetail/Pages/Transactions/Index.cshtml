@@ -1,48 +1,56 @@
 ﻿@page
-@model FinanceSpreetail.Pages.Transaction.IndexModel
+@model FinanceSpreetail.Pages.Transactions.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+
+
+<h2>Transactions</h2>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Transactions/Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Transaction[0].name)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    Transaction
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Transaction[0].amount)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.AmountSort">
+                    Amount
+                </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Transaction[0].date)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                    Date
+                </a>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Transaction) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.date)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Transaction)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+                <td>
+                    <a asp-page="./Transactions/Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Transactions/Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

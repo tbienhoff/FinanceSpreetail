@@ -1,30 +1,29 @@
 ﻿@page
-@model FinanceSpreetail.Pages.Transaction.CreateModel
+@model FinanceSpreetail.Pages.Transactions.CreateModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Transaction Create</h2>
 
-<h4>Transaction</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Transaction.name" class="control-label"></label>
+                <label asp-for="Transaction.name" class="control-label">Name</label>
                 <input asp-for="Transaction.name" class="form-control" />
                 <span asp-validation-for="Transaction.name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Transaction.amount" class="control-label"></label>
+                <label asp-for="Transaction.amount" class="control-label">Amount</label>
                 <input asp-for="Transaction.amount" class="form-control" />
                 <span asp-validation-for="Transaction.amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Transaction.date" class="control-label"></label>
+                <label asp-for="Transaction.date" class="control-label">Date</label>
                 <input asp-for="Transaction.date" class="form-control" />
                 <span asp-validation-for="Transaction.date" class="text-danger"></span>
             </div>

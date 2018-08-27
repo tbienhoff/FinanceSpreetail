@@ -8,6 +8,7 @@ namespace FinanceSpreetail.Models
 	public class Category
 	{
 		public int ID { get; set; }
+		public string name { get; set; }
 		public int amount { get; set; }
 
 		public ICollection<Transaction> transactions { get; set; }

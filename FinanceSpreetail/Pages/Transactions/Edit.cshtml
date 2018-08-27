@@ -1,13 +1,12 @@
 ﻿@page
-@model FinanceSpreetail.Pages.Transaction.EditModel
+@model FinanceSpreetail.Pages.Transactions.EditModel
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Edit Transaction</h2>
 
-<h4>Transaction</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,17 +14,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Transaction.ID" />
             <div class="form-group">
-                <label asp-for="Transaction.name" class="control-label"></label>
+                <label asp-for="Transaction.name" class="control-label">Name</label>
                 <input asp-for="Transaction.name" class="form-control" />
                 <span asp-validation-for="Transaction.name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Transaction.amount" class="control-label"></label>
+                <label asp-for="Transaction.amount" class="control-label">Amount</label>
                 <input asp-for="Transaction.amount" class="form-control" />
                 <span asp-validation-for="Transaction.amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Transaction.date" class="control-label"></label>
+                <label asp-for="Transaction.date" class="control-label">Date</label>
                 <input asp-for="Transaction.date" class="form-control" />
                 <span asp-validation-for="Transaction.date" class="text-danger"></span>
             </div>
