@@ -1,5 +1,5 @@
 ﻿@page
-@model FinanceSpreetail.Pages.Transactions.IndexModel
+@model FinanceSpreetail.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -9,12 +9,10 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    Response.Redirect("/Transactions");
-
-
+    Response.Redirect("/About");
 }
 else
 {
     <h2>Please Login or Register to Access the Application.</h2>
-    
+
 }

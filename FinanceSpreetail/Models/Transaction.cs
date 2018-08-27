@@ -15,5 +15,6 @@ namespace FinanceSpreetail.Models
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime date { get; set; }
 		public Category category { get; set; }
+		public int categoryID { get; set; }
 	}
 }

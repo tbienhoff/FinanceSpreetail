@@ -29,6 +29,12 @@
         <dd>
             @Html.DisplayFor(model => model.Transaction.date)
         </dd>
+        <dt>
+            Category
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.category.name)
+        </dd>
     </dl>
     
     <form method="post">

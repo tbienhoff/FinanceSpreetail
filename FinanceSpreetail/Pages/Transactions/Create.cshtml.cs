@@ -9,7 +9,7 @@ using FinanceSpreetail.Models;
 
 namespace FinanceSpreetail.Pages.Transactions
 {
-    public class CreateModel : PageModel
+    public class CreateModel : CategoryNamePageModel
     {
         private readonly FinanceSpreetail.Models.FinanceSpreetailContext _context;
 
@@ -20,6 +20,7 @@ namespace FinanceSpreetail.Pages.Transactions
 
         public IActionResult OnGet()
         {
+			PopulateCategoryDropDownList(_context);
             return Page();
         }
 
@@ -33,10 +34,21 @@ namespace FinanceSpreetail.Pages.Transactions
                 return Page();
             }
 
-            _context.Transaction.Add(Transaction);
-            await _context.SaveChangesAsync();
+			var emptyTransaction = new Transaction();
 
-            return RedirectToPage("./Index");
+			if(await TryUpdateModelAsync<Transaction>(
+				emptyTransaction,
+				"transaction",
+				s => s.ID, s => s.categoryID, s => s.name, s => s.amount, s => s.date))
+			{
+				_context.Transaction.Add(emptyTransaction);
+				await _context.SaveChangesAsync();
+				return RedirectToPage("./Index");
+			}
+
+			PopulateCategoryDropDownList(_context, emptyTransaction.categoryID);
+			return Page();
+
         }
     }
 }

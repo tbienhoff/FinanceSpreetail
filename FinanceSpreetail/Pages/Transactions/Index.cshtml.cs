@@ -22,14 +22,18 @@ namespace FinanceSpreetail.Pages.Transactions
 
 		public async Task OnGetAsync(string sortOrder)
 		{
-			NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-			DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+			DateSort = String.IsNullOrEmpty(sortOrder) ? "Date" : "";
+			NameSort = sortOrder == "Name" ? "name_desc" : "Name";
 			AmountSort = sortOrder == "Amount" ? "amount_desc" : "Amount";
+			CategorySort = sortOrder == "Category" ? "category_desc" : "Category";
 
 			IQueryable<Transaction> tranactionIQ = from s in _context.Transaction select s;
 
 			switch (sortOrder)
 			{
+				case "Name":
+					tranactionIQ = tranactionIQ.OrderBy(s => s.name);
+					break;
 				case "name_desc":
 					tranactionIQ = tranactionIQ.OrderByDescending(s => s.name);
 					break;
@@ -45,17 +49,24 @@ namespace FinanceSpreetail.Pages.Transactions
 				case "amount_desc":
 					tranactionIQ = tranactionIQ.OrderByDescending(s => s.amount);
 					break;
+				case "Category":
+					tranactionIQ = tranactionIQ.OrderBy(s => s.category.name);
+					break;
+				case "category_desc":
+					tranactionIQ = tranactionIQ.OrderByDescending(s => s.category.name);
+					break;
 				default:
-					tranactionIQ = tranactionIQ.OrderBy(s => s.name);
+					tranactionIQ = tranactionIQ.OrderByDescending(s => s.date);
 					break;
 			}
 
-			Transaction = await tranactionIQ.AsNoTracking().ToListAsync();
+			Transaction = await tranactionIQ.Include(t => t.category).AsNoTracking().ToListAsync();
 		}
 
 		public string NameSort { get; set; }
 		public string AmountSort { get; set; }
 		public string DateSort { get; set; }
+		public string CategorySort { get; set; }
 
 		public string CurrentFilter { get; set; }
 		public string CurrentSort { get; set; }

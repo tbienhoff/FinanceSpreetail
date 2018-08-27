@@ -1,9 +1,39 @@
 ﻿@page
 @model AboutModel
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "Bienhoff Finance";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@Model.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<h2>Budget</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Budget
+            </th>
+            <th>
+                Current Amount
+            </th>
+            <th>
+                Limit
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Budgets)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @item.amount
+                </td>
+                <td>
+                    @item.limit
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
