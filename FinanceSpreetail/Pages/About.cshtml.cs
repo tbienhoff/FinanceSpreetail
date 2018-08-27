@@ -20,11 +20,15 @@ namespace FinanceSpreetail.Pages
 		}
 
 		public IList<BudgetGroup> Budgets { get; set; }
+		public int total { get; set; }
 
 		public async Task OnGetAsync()
 		{
+			DateTime today = DateTime.Today;
+
 			IQueryable<BudgetGroup> data =
 				from transaction in _context.Transaction
+				where transaction.date.Month == today.Month && transaction.date.Year == today.Year
 				group transaction by transaction.categoryID into budgetGroup
 				select new BudgetGroup()
 				{
@@ -34,6 +38,7 @@ namespace FinanceSpreetail.Pages
 				};
 
 			Budgets = await data.AsNoTracking().ToListAsync();
+			total = Budgets.Sum(b => b.amount);
 		}
 
 

@@ -2,6 +2,7 @@
 @model AboutModel
 @{
     ViewData["Title"] = "Bienhoff Finance";
+    var varRed = "color:red";
 }
 
 <h2>Budget</h2>
@@ -23,7 +24,9 @@
     <tbody>
         @foreach (var item in Model.Budgets)
         {
-            <tr>
+            varRed = item.amount > item.limit ? "color:red" : "";
+
+            <tr style="@varRed">
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
@@ -37,3 +40,39 @@
         }
     </tbody>
 </table>
+
+<div id="chart1"></div>
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            //var temp = JSON.Encode(Model);
+            //var budget = Html.Raw(JSON.Encode(Model));
+
+            var budget = @Html.Raw(Json.Serialize(Model.Budgets));
+
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Budget');
+            data.addColumn('number', 'Budget Percentage');
+
+            for (var i = 0; i < budget.length; i++)
+            {
+                data.addRow([budget[i].name, { v: budget[i].amount, f: '33%' }]);
+            }
+
+            // Simple Pie Chart:
+            var option = {
+                title: 'Budget Breakdown for Current Month',
+                width: 500,
+                height: 400
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+            chart.draw(data, option);
+        }
+</script>
