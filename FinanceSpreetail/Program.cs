@@ -27,7 +27,7 @@ namespace FinanceSpreetail
 				{
 					var context = services.GetRequiredService<FinanceSpreetailContext>();
 					// context.Database.EnsureDeleted();
-					context.Database.EnsureCreated();
+					//context.Database.EnsureCreated();
 				}
 				catch (Exception ex)
 				{
